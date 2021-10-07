@@ -1,0 +1,7 @@
+{% extends 'base.html.twig' %}
+
+{% block body %} {% for book in allBooks
+  %}
+  {{ dump(book) }}
+  {% endfor %} {% endblock %}
+  
