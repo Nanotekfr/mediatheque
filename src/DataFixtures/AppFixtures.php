@@ -11,8 +11,7 @@ use App\Entity\Book;
 use App\Entity\Cd;
 use App\Entity\Document;
 
-class AppFixtures extends Fixture
-{
+class AppFixtures extends Fixture {
     public function load(ObjectManager $manager)
     {
         $generator = Faker\Factory::create();
