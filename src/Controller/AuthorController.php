@@ -11,8 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/author')]
-class AuthorController extends AbstractController
-{
+class AuthorController extends AbstractController{
     #[Route('/', name: 'author_index', methods: ['GET'])]
     public function index(AuthorRepository $authorRepository): Response
     {
@@ -71,7 +70,7 @@ class AuthorController extends AbstractController
     #[Route('/{id}', name: 'author_delete', methods: ['POST'])]
     public function delete(Request $request, Author $author): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$author->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' .$author->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($author);
             $entityManager->flush();
