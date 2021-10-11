@@ -30,7 +30,7 @@ phpstan:
     - phpstan analyst ./src
   allow_failure: false 
 
-twig-lint:
+Twig-lint:
   stage: CodingStandards
   script:
     - twig-lint lint ./templates
