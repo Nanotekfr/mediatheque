@@ -11,7 +11,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/author')]
-class AuthorController extends AbstractController{
+class AuthorController extends AbstractController 
+{
     #[Route('/', name: 'author_index', methods: ['GET'])]
     public function index(AuthorRepository $authorRepository): Response
     {
