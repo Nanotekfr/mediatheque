@@ -10,7 +10,7 @@ class UnitTest extends TestCase
     public function testAdherent(): void
     {
       $adherent = new Adherent();
-      $adherent->setLastName('Toto');
-      $this->assertTrue($adherent->getLastName()=== 'Toto');
+      $adherent->setLastName('Titi');
+      $this->assertTrue($adherent->getLastName()=== 'Titi');
     }
 }
