@@ -7,7 +7,7 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/authors', name: 'user-authors-')]
+#[Route('/authors', name: 'public-authors-')]
 class AuthorsController extends AbstractController
 {
     #[Route('/', name: 'home')]
@@ -19,7 +19,7 @@ class AuthorsController extends AbstractController
         foreach ($finder as $file) {
             $contents = json_decode($file->getContents());
         }
-        return $this->render('user/authors/index.html.twig', [
+        return $this->render('public/authors/index.html.twig', [
             'allAuthors' => $contents,
         ]);
     }
@@ -41,7 +41,7 @@ class AuthorsController extends AbstractController
             }
         }
 
-        return $this->render('user/authors/single-author.html.twig', [
+        return $this->render('public/authors/single-author.html.twig', [
             'author' => $author,
         ]);
     }
@@ -60,7 +60,7 @@ class AuthorsController extends AbstractController
             }
         }
 
-        return $this->render('user/authors/author-min.html.twig', [
+        return $this->render('public/authors/author-min.html.twig', [
             'author' => $author,
         ]);
     }

@@ -1,17 +1,30 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="fr">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>{% block title %}Hello{% endblock %}</title>
     {% block stylesheets %}
-      {{ encore_entry_link_tags('app') }}
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,500i,600,600i&display=swap" rel="stylesheet" />
+        {{ encore_entry_link_tags('app') }}
     {% endblock %}
   </head>
   <body>
-    {% block body %}{% endblock %}
+    </header>
+    <main role="main" class="container mt-5">
+        {% block body %}{% endblock %}
+    </main>
+    <footer class="mt-7 px-3 py-5 text-center text-muted">
+      <p>
+          Mediatheque
+      </p>
+      <p>
+          <a href="#" class="text-black">Back to top</a>
+      </p>
+    </footer>
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
   </body>
-  {% block javascripts %}
-    {{ encore_entry_script_tags('app') }}
-  {% endblock %}
 </html>

@@ -12,13 +12,13 @@ class FooterInfosController extends AbstractController
     {
         $infos = [];
         $favLanguages = $request->getLanguages();
-        $browser = $request->headers->get('User-Agent');
+        $browser = $request->headers->get('Public-Agent');
 
         $infos['ipVisitor'] = $request->getClientIp();
         $infos['favLang'] = $favLanguages[0];
         $infos['browser'] = $browser;
 
-        return $this->render('user/commun/footer-infos.html.twig', [
+        return $this->render('public/commun/footer-infos.html.twig', [
             'infos' => $infos,
         ]);
     }

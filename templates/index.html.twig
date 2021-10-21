@@ -3,8 +3,8 @@
 {% block title %}{{ titre | upper }}{% endblock %}
 
 {% block body %}
-  {% include "user/commun/navbar.html.twig" %}
-    <h1>Bienvenu {{ user | upper }}</h1>
+  {% include "public/commun/navbar.html.twig" %}
+    <h1>Bienvenu {{ public | upper }}</h1>
     <section class="col-sm-10 col-md-8">
       <div>
         <ul>
@@ -14,13 +14,5 @@
         </ul>
       </div>
     </section>
-    <div class="clearfix visible-sm"></div>
-    <div class="col-md-2">	
-      <div class="row">
-        <aside class="col-md-12">Aside 3</aside>
-        <aside class="col-md-12">Aside 4</aside>
-      </div>
-    </div>
-  </div>
-  {% include "user/commun/footer.html.twig" %}
+  {% include "public/commun/footer.html.twig" %}
 {% endblock %}

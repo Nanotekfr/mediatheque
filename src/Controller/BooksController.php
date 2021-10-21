@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/books', name: 'user-books-')]
+#[Route('/books', name: 'public-books-')]
 
 class BooksController extends AbstractController
 {
@@ -26,7 +26,7 @@ class BooksController extends AbstractController
             $contents = json_decode($file->getContents());
         }
 
-        return $this->render('user/books/index.html.twig', [
+        return $this->render('public/books/index.html.twig', [
             'controller_name' => 'PublicController',
             'allBooks' => $contents,
         ]);
@@ -56,7 +56,7 @@ class BooksController extends AbstractController
 
         $book = array_unique($book, SORT_REGULAR);
 
-        return $this->render('user/books/single-book.html.twig', [
+        return $this->render('public/books/single-book.html.twig', [
             'book' => $book,
         ]);
     }
@@ -95,7 +95,7 @@ class BooksController extends AbstractController
                 return $responseFile;
                 break;
             default:
-                return $this->render('user/books/single-book.html.twig', [
+                return $this->render('public/books/single-book.html.twig', [
                     'book' => $book,
                 ]);
                 break;
@@ -116,7 +116,7 @@ class BooksController extends AbstractController
                 }
             }
         }
-        return $this->render('user/books/single-book.html.twig', [
+        return $this->render('public/books/single-book.html.twig', [
             'book' => $book,
         ]);
     }
@@ -136,7 +136,7 @@ class BooksController extends AbstractController
                 }
             }
         }
-        return $this->render('user/books/book-same-style.html.twig', [
+        return $this->render('public/books/book-same-style.html.twig', [
             'bookSameStyle' => array_unique($bookSameStyle, SORT_REGULAR),
         ]);
     }
