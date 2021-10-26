@@ -12,18 +12,8 @@ class PublicController extends AbstractController
   #[Route('/', name: 'home')]
   public function index(Request $request): Response
   {
-    $lang = $request->server->get("LANG");
-    $ip = $request->server->get("HTTP_HOST");
-    $nav = $request->server->get("HTTP_SEC_CH_UA");
-    $public = "Toto";
-    $titre = "Mediatheque 3wa";
     return $this->render('index.html.twig', [
-        'controller_name' => 'PublicController',
-        'lang' => $lang,
-        'ip' => $ip,
-        'nav' => $nav,
-        'public' => $public,
-        'titre' => $titre,
+        'controller_name' => 'PublicController'
     ]);
   }
   #[Route('/presentation', name: 'presentation')]

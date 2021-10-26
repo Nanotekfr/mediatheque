@@ -1,18 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ titre | upper }}{% endblock %}
-
 {% block body %}
   {% include "public/commun/navbar.html.twig" %}
-    <h1>Bienvenu {{ public | upper }}</h1>
-    <section class="col-sm-10 col-md-8">
-      <div>
-        <ul>
-          <li>  {{ lang }}</li>
-          <li>{{ ip }}</li>
-          <li> {{ nav }}</li>
-        </ul>
-      </div>
-    </section>
   {% include "public/commun/footer.html.twig" %}
 {% endblock %}
