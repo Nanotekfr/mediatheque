@@ -1,4 +1,4 @@
-image: php:8.0.0RC3-fpm-alpine
+image: jakzal/phpqa:php8.0
 
 before_script:
     - run composer update
