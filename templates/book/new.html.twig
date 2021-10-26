@@ -1,11 +1,8 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %} {% block title %}New Book{% endblock %} {% block
+body %}
+<h1>Create new Book</h1>
 
-{% block title %}New Book{% endblock %}
+{{ include("book/_form.html.twig") }}
 
-{% block body %}
-    <h1>Create new Book</h1>
-
-    {{ include('book/_form.html.twig') }}
-
-    <a href="{{ path('book_index') }}">back to list</a>
+<a href="{{ path('book_index') }}">back to list</a>
 {% endblock %}

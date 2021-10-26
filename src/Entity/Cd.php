@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use App\Repository\CdRepository;
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\Document;
 
 /**
  * @ORM\Entity(repositoryClass=CdRepository::class)

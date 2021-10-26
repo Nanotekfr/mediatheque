@@ -6,17 +6,17 @@
 
 {{
   render(
-    controller('App\\Controller\\AuthorsController::getAuthorInfos', {
-      id: book[0]['authorId']
+    controller("App\\Controller\\AuthorsController::getAuthorInfos", {
+      id: book[0]["authorId"]
     })
   )
 }}
 
 {{
   render(
-    controller('App\\Controller\\BooksController::getBooksByStyle', {
-      styles: book[0]['styles'],
-      exclude: book[0]['id']
+    controller("App\\Controller\\BooksController::getBooksByStyle", {
+      styles: book[0]["styles"],
+      exclude: book[0]["id"]
     })
   )
 }}

@@ -14,11 +14,12 @@ class AuthorsController extends AbstractController
     public function index(): Response
     {
         $finder = new Finder();
-        $finder->files()->name('authors.json')->in("../public/json");
+        $finder->files()->name('authors.json')->in('../public/json');
 
         foreach ($finder as $file) {
             $contents = json_decode($file->getContents());
         }
+
         return $this->render('public/authors/index.html.twig', [
             'allAuthors' => $contents,
         ]);
@@ -27,10 +28,9 @@ class AuthorsController extends AbstractController
     #[Route('/{id}', name: 'author-by-id')]
     public function getAuthorById($id): Response
     {
-
         $finder = new Finder();
         //$finder->name('books');
-        $finder->files()->name('authors.json')->in("../public/json");
+        $finder->files()->name('authors.json')->in('../public/json');
         $author = [];
         foreach ($finder as $file) {
             $contents = json_decode($file->getContents(), true);
@@ -49,7 +49,7 @@ class AuthorsController extends AbstractController
     public function getAuthorInfos($id)
     {
         $finder = new Finder();
-        $finder->files()->name('authors.json')->in("../public/json");
+        $finder->files()->name('authors.json')->in('../public/json');
         $author = [];
         foreach ($finder as $file) {
             $contents = json_decode($file->getContents(), true);

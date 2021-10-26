@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use App\Repository\BookRepository;
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\Document;
 
 /**
  * @ORM\Entity(repositoryClass=BookRepository::class)
@@ -43,10 +42,9 @@ class Book extends Document
     /**
      * @ORM\Column(type="string", length=255)
      */
-
     private $title;
-    
-    public function getTitle() : ?string
+
+    public function getTitle(): ?string
     {
         return $this->title;
     }

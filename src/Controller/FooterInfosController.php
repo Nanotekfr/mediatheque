@@ -8,18 +8,18 @@ use Symfony\Component\HttpFoundation\Response;
 
 class FooterInfosController extends AbstractController
 {
-  public function getInfos(Request $request): Response
-  {
-      $infos = [];
-      $favLanguages = $request->getLanguages();
-      $browser = $request->headers->get('User-Agent');
+    public function getInfos(Request $request): Response
+    {
+        $infos = [];
+        $favLanguages = $request->getLanguages();
+        $browser = $request->headers->get('User-Agent');
 
-      $infos['ipVisitor'] = $request->getClientIp();
-      $infos['favLang'] = $favLanguages[0];
-      $infos['browser'] = $browser;
+        $infos['ipVisitor'] = $request->getClientIp();
+        $infos['favLang'] = $favLanguages[0];
+        $infos['browser'] = $browser;
 
-      return $this->render('public/commun/footer-infos.html.twig', [
+        return $this->render('public/commun/footer-infos.html.twig', [
           'infos' => $infos,
-      ]);
-  }
+        ]);
+    }
 }

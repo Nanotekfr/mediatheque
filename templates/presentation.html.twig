@@ -1,30 +1,25 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Présentation !!!{% endblock %}
-
-{% block body %}
-  {% include "public/commun/navbar.html.twig" %}
-  <div>
-    <section>
-      <h2>les modalités d'adhésion</h2>
-      <article>
-        <p>prix a l'année 400 €</p>
-      </article>
-    </section>
-    <section>
-      <h2>la localisation</h2>
-      <article>
-        <p>3 articles par semaine</p>
-        <p>maximum 1 mois</p>
-      </article>
-    </section>
-    <section>
-      <h2>les horaires</h2>
-      <article>
-        <p>Du Lundi au Samedi</p>
-        <p>9H a 21H</p>
-      </article>
-    </section>
-  </div>
-  {% include "public/commun/footer.html.twig" %}
-  {% endblock %}
+{% extends 'base.html.twig' %} {% block title %}Présentation !!!{% endblock %}
+{% block body %} {% include "public/commun/navbar.html.twig" %}
+<div>
+  <section>
+    <h2>les modalités d'adhésion</h2>
+    <article>
+      <p>prix a l'année 400 €</p>
+    </article>
+  </section>
+  <section>
+    <h2>la localisation</h2>
+    <article>
+      <p>3 articles par semaine</p>
+      <p>maximum 1 mois</p>
+    </article>
+  </section>
+  <section>
+    <h2>les horaires</h2>
+    <article>
+      <p>Du Lundi au Samedi</p>
+      <p>9H a 21H</p>
+    </article>
+  </section>
+</div>
+{% include "public/commun/footer.html.twig" %} {% endblock %}
