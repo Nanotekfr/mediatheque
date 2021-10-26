@@ -1,7 +1,7 @@
 image: jakzal/phpqa:php7.4
 
 before_script:
-  - run composer update
+  - composer update
   - composer install
 
 cache:
