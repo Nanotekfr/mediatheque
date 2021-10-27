@@ -5,10 +5,13 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
+#[IsGranted('ROLE_ADMIN')]
 
 #[Route('/user')]
 class UserController extends AbstractController
@@ -21,7 +24,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'user_new', methods: ['GET','POST'])]
+    #[Route('/new', name: 'user_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {
         $user = new User();
@@ -42,15 +45,18 @@ class UserController extends AbstractController
         ]);
     }
 
+    // mise en place d'un voter pour gérer l'acces aux données
     #[Route('/{id}', name: 'user_show', methods: ['GET'])]
     public function show(User $user): Response
     {
+        $this->denyAccessUnlessGranted('POST_VIEW', $user);
+
         return $this->render('user/show.html.twig', [
-            'user' => $user,
+          'user' => $user,
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'user_edit', methods: ['GET','POST'])]
+    #[Route('/{id}/edit', name: 'user_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user): Response
     {
         $form = $this->createForm(UserType::class, $user);

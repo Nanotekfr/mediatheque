@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Repository\BookRepository;
+use App\Repository\DocumentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\HeaderUtils;
@@ -16,6 +18,14 @@ class BooksController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(): Response
     {
+        return $this->render('front-office/books/index.html.twig', [
+        //'allBooks' => $contents,
+        ]);
+    }
+
+    #[Route('/finder/books', name: 'finder-books')]
+    public function allBooksUsingFinder(): Response
+    {
         $finder = new Finder();
         //$finder->name('books');
         $finder->files()->name('books.json')->in('../public/json');
@@ -24,13 +34,13 @@ class BooksController extends AbstractController
             $contents = json_decode($file->getContents());
         }
 
-        return $this->render('front-office/books/index.html.twig', [
-            'controller_name' => 'PublicController',
-            'allBooks' => $contents,
+        return $this->render('front-office/books/finder-books.html.twig', [
+          'controller_name' => 'PublicController',
+          'allBooks' => $contents,
         ]);
     }
 
-    #[Route('/criterias', name: 'book-by-style')]
+    #[Route('/finder/criterias', name: 'finder-books-by-style')]
     public function getBookByStyle(Request $request): Response
     {
         $styles = $request->query->has('styles') ? $request->query->get('styles') : null;
@@ -55,6 +65,77 @@ class BooksController extends AbstractController
 
         return $this->render('front-office/books/single-book.html.twig', [
             'book' => $book,
+        ]);
+    }
+
+    #[Route('/nb_page', name: 'book-by-nb-page')]
+    public function getBookByNbPage(Request $request, BookRepository $bookRepository): Response
+    {
+        $nb_page = $request->query->has('min') ? $request->query->get('min') : null;
+        if ($nb_page != null) {
+            $bigBooks = $bookRepository->findBigBooks($nb_page);
+
+            return $this->render('front-office/books/big-book.html.twig', [
+                'nb_page' => $nb_page,
+                'bigBooks' => $bigBooks,
+            ]);
+        }
+    }
+
+    #[Route('/id_range', name: 'book-by-id-range')]
+    public function getBookByIdRange(Request $request, BookRepository $bookRepository): Response
+    {
+        $start = $request->query->has('min') ? $request->query->get('min') : null;
+        $stop = $request->query->has('max') ? $request->query->get('max') : null;
+        if ($start != null && $stop != null) {
+            $titles = $bookRepository->findBooksTitleByRangeId($start, $stop);
+
+            return $this->render('front-office/books/book-id-range.html.twig', [
+                'titles' => $titles,
+                'start' => $start,
+                'stop' => $stop,
+            ]);
+        }
+    }
+
+    #[Route('/author_name_start_by', name: 'doc-author-name-start-by')]
+    public function getDocByStart(Request $request, DocumentRepository $documentRepository): Response
+    {
+        $start = $request->query->has('s') ? $request->query->get('s') : null;
+        if ($start != null) {
+            $documents = $documentRepository->findDocumentsByAuthorFirstLetter($start);
+
+            return $this->render('front-office/books/author-start-by.html.twig', [
+                'toto' => $documents,
+                'tata' => $start,
+            ]);
+        }
+    }
+
+    #[Route('/author_name_start_by_and_category', name: 'doc-author-name-start-by-and-cat')]
+    public function getDocByStartAndCat(Request $request, DocumentRepository $documentRepository): Response
+    {
+        $start = $request->query->has('s') ? $request->query->get('s') : null;
+        $cat = $request->query->has('c') ? $request->query->get('c') : null;
+
+        if ($start != null) {
+            $documents = $documentRepository->findDocumentsByAuthorFirstLetterAndCat($start, $cat);
+
+            return $this->render('front-office/books/author-start-by-and-category.html.twig', [
+                'toto' => $documents,
+                'tata' => $start,
+                'tutu' => $cat,
+            ]);
+        }
+    }
+
+    #[Route('/cd-great-duration', name: 'cd-great-duration')]
+    public function findCdByDuration(DocumentRepository $documentRepository): Response
+    {
+        $cds = $documentRepository->findCdByDuration();
+
+        return $this->render('front-office/books/cd-great-duration.html.twig', [
+            'cds' => $cds,
         ]);
     }
 

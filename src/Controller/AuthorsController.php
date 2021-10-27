@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/authors', name: 'front-office-authors-')]
+
 class AuthorsController extends AbstractController
 {
     #[Route('/', name: 'home')]

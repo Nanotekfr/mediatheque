@@ -5,15 +5,16 @@ namespace App\Controller;
 use App\Entity\Book;
 use App\Form\BookType;
 use App\Repository\BookRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/book')]
+#[Route('/book/form')]
 class BookController extends AbstractController
 {
-    #[Route('/', name: 'book_index', methods: ['GET'])]
+    #[Route('/', name: 'book_form_index', methods: ['GET'])]
     public function index(BookRepository $bookRepository): Response
     {
         return $this->render('book_form/index.html.twig', [
@@ -21,6 +22,8 @@ class BookController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_LIBRARIAN')]
+    #[Route('/new', name: 'book_form_new', methods: ['GET', 'POST'])]
     #[Route('/new', name: 'book_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {
@@ -33,7 +36,7 @@ class BookController extends AbstractController
             $entityManager->persist($book);
             $entityManager->flush();
 
-            return $this->redirectToRoute('book_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('book_form_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('book_form/new.html.twig', [
@@ -42,7 +45,7 @@ class BookController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'book_show', methods: ['GET'])]
+    #[Route('/{id}', name: 'book_form_show', methods: ['GET'])]
     public function show(Book $book): Response
     {
         return $this->render('book_form/show.html.twig', [
@@ -50,7 +53,7 @@ class BookController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'book_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edit', name: 'book_form_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Book $book): Response
     {
         $form = $this->createForm(BookType::class, $book);
@@ -59,7 +62,7 @@ class BookController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('book_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('book_form_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('book_form/edit.html.twig', [
@@ -77,6 +80,6 @@ class BookController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('book_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('book_form_index', [], Response::HTTP_SEE_OTHER);
     }
 }

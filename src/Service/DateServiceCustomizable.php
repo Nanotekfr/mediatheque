@@ -4,14 +4,17 @@ namespace App\Service;
 
 //use DateTime;
 
-class DateService implements DateServiceInterface
+class DateServiceCustomizable implements DateServiceInterface
 {
     private $date;
+    private $origin;
 
-    public function __construct()
+    // paramètre $string du constructeur passé dans le services.yaml (défini dans parameters en tant que constante d'application)
+    public function __construct(string $string)
     {
         // Le backslash sert à notifier qu'on se sert d'une classe native php - évite le use au dessus
         $this->date = new \DateTime();
+        $this->origin = new \DateTime($string);
     }
 
     public function getCurrentDay(): string
@@ -21,9 +24,8 @@ class DateService implements DateServiceInterface
 
     public function daysSinceNewYearsDay(): string
     {
-        $origin = new \DateTime('first day of january');
         $target = $this->date;
-        $interval = $origin->diff($target);
+        $interval = $this->origin->diff($target);
 
         return $interval->format('%R%a days');
     }

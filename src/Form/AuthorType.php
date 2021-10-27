@@ -13,8 +13,7 @@ class AuthorType extends AbstractType
     {
         $builder
             ->add('lastName')
-            ->add('firstName')
-        ;
+            ->add('firstName');
     }
 
     public function configureOptions(OptionsResolver $resolver): void
