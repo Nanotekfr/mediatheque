@@ -16,7 +16,7 @@ class BookController extends AbstractController
     #[Route('/', name: 'book_index', methods: ['GET'])]
     public function index(BookRepository $bookRepository): Response
     {
-        return $this->render('book/index.html.twig', [
+        return $this->render('book_form/index.html.twig', [
             'books' => $bookRepository->findAll(),
         ]);
     }
@@ -36,7 +36,7 @@ class BookController extends AbstractController
             return $this->redirectToRoute('book_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('book/new.html.twig', [
+        return $this->renderForm('book_form/new.html.twig', [
             'book' => $book,
             'form' => $form,
         ]);
@@ -45,7 +45,7 @@ class BookController extends AbstractController
     #[Route('/{id}', name: 'book_show', methods: ['GET'])]
     public function show(Book $book): Response
     {
-        return $this->render('book/show.html.twig', [
+        return $this->render('book_form/show.html.twig', [
             'book' => $book,
         ]);
     }
@@ -62,7 +62,7 @@ class BookController extends AbstractController
             return $this->redirectToRoute('book_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('book/edit.html.twig', [
+        return $this->renderForm('book_form/edit.html.twig', [
             'book' => $book,
             'form' => $form,
         ]);

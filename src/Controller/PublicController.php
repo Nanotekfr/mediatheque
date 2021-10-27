@@ -12,7 +12,7 @@ class PublicController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(Request $request): Response
     {
-        return $this->render('index.html.twig', [
+        return $this->render('front-office/index.html.twig', [
         'controller_name' => 'PublicController',
         ]);
     }

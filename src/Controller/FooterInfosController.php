@@ -22,7 +22,7 @@ class FooterInfosController extends AbstractController
         $currentDate = $date->getCurrentDay();
         $daySinceNewYearsDay = $date->daySinceNewYearDay();
 
-        return $this->render('public/commun/footer-infos.html.twig', [
+        return $this->render('front-office/commun/footer-infos.html.twig', [
           'infos' => $infos,
           'current_date' => $currentDate,
           'day_since_new_years_day' => $daySinceNewYearsDay,
