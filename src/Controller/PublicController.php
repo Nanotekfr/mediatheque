@@ -22,7 +22,7 @@ class PublicController extends AbstractController
     #[Route('/presentation', name: 'presentation')]
     public function presentation(): Response
     {
-        return $this->render('presentation.html.twig', [
+        return $this->render('front-office/presentation.html.twig', [
           'controller_name' => 'PublicController',
         ]);
     }

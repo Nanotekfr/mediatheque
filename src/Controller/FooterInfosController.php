@@ -16,6 +16,7 @@ class FooterInfosController extends AbstractController
     {
         // moyen d'injecter un service directement dans le code - le service doit être publique - ancienne version ?
         //$date = $this->container->get(DateService::class);
+
         $infos = [];
         $favLanguages = $request->getLanguages();
         $browser = $request->headers->get('User-Agent');
@@ -25,17 +26,17 @@ class FooterInfosController extends AbstractController
         $infos['browser'] = $browser;
 
         $currentDate = $date->getCurrentDay();
-        $daySinceNewYearsDay = $date->daySinceNewYearDay();
+        $daySinceNewYearsDay = $date->daysSinceNewYearsDay();
 
         $currentDateCustom = $dateCustom->getCurrentDay();
         $daySinceNewYearsDayCustom = $dateCustom->daysSinceNewYearsDay();
 
         return $this->render('front-office/commun/footer-infos.html.twig', [
-          'infos' => $infos,
-          'current_date' => $currentDate,
-          'day_since_new_years_day' => $daySinceNewYearsDay,
-          'current_date_Custom' => $currentDateCustom,
-          'day_since_new_years_day_Custom' => $daySinceNewYearsDayCustom,
+            'infos' => $infos,
+            'current_date' => $currentDate,
+            'day_since_new_years_day' => $daySinceNewYearsDay,
+            'current_date_Custom' => $currentDateCustom,
+            'day_since_new_years_day_Custom' => $daySinceNewYearsDayCustom,
         ]);
     }
 }
