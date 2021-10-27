@@ -44,11 +44,11 @@ phpunit:
     - name: mysql:5.7
       alias: mysql
   variables:
-    MYSQL_ROOT_PASSWORD: 
+    MYSQL_ROOT_PASSWORD: mediatheque_test
     MYSQL_DATABASE: mediatheque_test
-    MYSQL_USER: root
-    MYSQL_PASSWORD: 
-    DATABASE_URL: "mysql://root@127.0.0.1:3306/mediatheque_test"
+    MYSQL_USER: mediatheque_test
+    MYSQL_PASSWORD: mediatheque_test
+    DATABASE_URL: "mysql://mediatheque_test:3306/mediatheque_test@mysql:3306"
   before_script:
     - apt-get update && apt-get install -y git libzip-dev
     - curl -sSk https://getcomposer.org/installer | php -- --disable-tls && mv composer.phar /usr/local/bin/composer
