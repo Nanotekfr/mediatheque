@@ -7,7 +7,7 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/authors', name: 'front-office-authors-')]
+#[Route('/authors', name: 'public-authors-')]
 
 class AuthorsController extends AbstractController
 {

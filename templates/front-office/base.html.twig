@@ -1,13 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="" />
+        <meta name="author" content="" />
         <title>{% block title %}Mediatheque{% endblock %}</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />          <!-- Google fonts-->
+        <link
+          href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"
+          rel="stylesheet"
+          type="text/css"
+        />
         {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}
+      {{ include('front-office/commun/navbar.html.twig') }}
+      {% block body %}{% endblock %}
+      {{ include('front-office/commun/footer.html.twig') }}
+      {% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}
     </body>
 </html>

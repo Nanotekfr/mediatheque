@@ -19,7 +19,7 @@ class BooksController extends AbstractController
     public function index(): Response
     {
         return $this->render('front-office/books/index.html.twig', [
-        //'allBooks' => $contents,
+            //'allBooks' => $contents,
         ]);
     }
 
@@ -27,7 +27,6 @@ class BooksController extends AbstractController
     public function allBooksUsingFinder(): Response
     {
         $finder = new Finder();
-        //$finder->name('books');
         $finder->files()->name('books.json')->in('../public/json');
 
         foreach ($finder as $file) {
@@ -35,8 +34,8 @@ class BooksController extends AbstractController
         }
 
         return $this->render('front-office/books/finder-books.html.twig', [
-          'controller_name' => 'PublicController',
-          'allBooks' => $contents,
+            'controller_name' => 'PublicController',
+            'allBooks' => $contents,
         ]);
     }
 
@@ -139,7 +138,7 @@ class BooksController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/{_format}', name: 'book-by-id', requirements: ['id' => '^\d+$'], priority: 10)]
+    #[Route('/{id}/{_format}', name: 'finder-book-by-id-and-format', requirements: ['id' => '^\d+$'], priority: 10)]
     public function getBookByIdAndFormat($id, Request $request): Response
     {
         $format = $request->getRequestFormat();
@@ -180,7 +179,7 @@ class BooksController extends AbstractController
         }
     }
 
-    #[Route('/{id}', name: 'book-by-id', requirements: ['id' => '^\d+$'], priority: 10)]
+    #[Route('/{id}', name: 'finder-book-by-id', requirements: ['id' => '^\d+$'], priority: 10)]
     public function getBookById($id): Response
     {
         $finder = new Finder();
